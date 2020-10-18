@@ -1,0 +1,105 @@
+\documentclass[12pt, a4paper,titlepage]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english, swedish]{babel}
+\usepackage{graphicx} 
+\usepackage{titling}
+\graphicspath{{bilder/}}
+\usepackage{minted} %kod
+\usepackage{mathptmx} %font
+\usepackage{hanging}
+\usepackage{xurl}
+\usepackage{subcaption} 
+\usepackage[hidelinks]{hyperref}
+\renewcommand{\familydefault}{\sfdefault}
+
+
+
+
+\setlength{\droptitle}{-15em}
+\title{
+\begin{minipage}{0.4\textwidth}
+\includegraphics[width=\linewidth]{SSIS-logo(1).png}
+\end{minipage}%
+\hfill%
+\begin{minipage}{0.6\textwidth}\raggedleft
+\normalsize{Stockholm Science \& Innovation School
+\\Gymnasiearbete
+\\Handledare: Sandra Forsman}
+\end{minipage}
+\\[25ex]\Huge{Proi Exypno}\\{\large Den frågvisa väckarklockan}}
+\author{\LARGE{Sam Shahriari}}
+\date{}
+
+
+\begin{document}
+
+    \maketitle
+    \selectlanguage{english}
+    \begin{abstract}
+    \addcontentsline{toc}{section}{Abstract}
+    The aim of this project was to build an alarm clock that makes sure that we go up when the alarm rings and to investigate how a smart alarm clock is built. The prototype of the alarm clock was based on the microcomputer Raspberry~Pi~3. It printed information to the user with an LCD-screen and received input from push buttons. The computer code was written in the language Python~2. When the alarm clock rings, a question is showed at the display. In order to turn the alarm off, the question must be correctly answered. The discussion addresses why the components were chosen and how the code works. The report ends with ideas for improvement. These are to solder all the components to a PCB, create a case and to add more and different types of questions.
+
+    \end{abstract}
+
+    \selectlanguage{swedish}
+    \tableofcontents
+    \thispagestyle{empty}
+    \newpage
+
+    \setcounter{page}{3}
+    
+   % \section{Förord}
+    %\input{text/forord}
+    %\newpage
+    
+    \section{Introduktion}
+    \input{text/1bakgrund}
+    %\newpage
+    
+    \section{Genomförande}
+    \input{text/2genomforande}   
+    %\newpage
+
+    \section{Resultat av projektet}
+    \input{text/3resultat}
+    %\newpage
+    
+    \section{Diskussion}
+    \input{text/4diskussion}
+    \newpage
+    
+    
+    \section{Referenser}
+    \input{text/5referenser}
+    \newpage
+    \section{Bilagor}
+        \subsection{Formulärsvar}
+            \label{sec:svar}
+            \includegraphics[scale=0.35]{fraga1.png}
+            \includegraphics[scale=0.35]{fraga2.png}
+            \includegraphics[scale=.7]{fraga1ny.png}            
+        %\subsection{Budget}
+         %   \label{sec:budget}
+          %\includegraphics[scale=0.7]{budget.PNG}
+        \subsection{Pseudokod}
+            \label{sec:psuedo}
+            \includegraphics[scale=0.35]{Pseudokod-1.jpg}
+            \newpage
+            \includegraphics[scale=0.35]{Pseudokod-2.jpg}
+            \newpage
+            \includegraphics[scale=0.35]{Pseudokod-3.jpg}
+            \newpage
+            
+        \subsection{Kod}
+        \label{sec:kod}
+            \tiny{\inputminted{python}{lcd.py}}
+            \newpage
+        \subsection{fragor.txt}
+        \label{sec:fragor}
+            \normalsize{\input{text/fragor}}
+            \newpage
+        \subsection{Kretsschema}
+        \label{sec:krets}
+            \includegraphics[scale=0.4]{krets.png}
+
+\end{document}

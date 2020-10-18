@@ -1,0 +1,43 @@
+% {Hur skapas en smart väckarklocka?}
+% {Hur ska en väckarklocka se till att vi verkligen går upp?)}
+
+\subsection{Val av komponenter}
+Kraven för datorn var att den skulle ha, lagringsutrymme för musik och frågor och minst 20 stycken stift. Stiften behövde både kunna ta emot och skicka ut signaler. Datorn behövde även kunna fjärrstyras med hjälp av SSH-teknik via en internetkabel. Datorn som uppfyllde dessa krav bäst var Raspberry Pi~3~B. Andra datorer som utvärderades var Raspberry Pi~3~A men den saknade ett nätverksuttag och hos Arduino Uno saknades ett användbart lagringsutrymme.
+
+Angående högtalaren var tanken från början  att ha en liten högtalare kopplad till och driven av datorn. På grund av tidsbrist användes istället en högtalare kopplad med 3,5 mm kabel till datorns AUX-utgång.
+
+
+\subsection{Kodens uppbyggnad}
+Det som saknades i biblioteket \texttt{CHARLcd} var möjligheten att rulla text som är längre än 16 tecken. Detta löstes med denna metod: \begin{minted}{python}
+if (len(string)>16): 
+for x in range(len(string)-16):
+    lcd.cursor_pos=(0,0)
+    lcd.write_string(string[x:x+16])
+    time.sleep(.5)}
+\end{minted}
+Om strängen består av fler än 16 tecken startas en for-loop som itereras för varje tecken som är för långt. För varje iteration hoppar strängen som skrivs ut ett steg till höger och pausar en halv sekund.  
+%CHARLcd, knappar
+
+%förklaring av vissa kodbitar med kod 
+
+
+
+
+%\mint{python}|int 57|
+%\mintinline{python}{for}
+%\subsection{Ev. diskussion av resultatet från testnignen}
+%Hjälper väckarklockan eller är den bara ett problem?
+
+\subsection{Problem som uppstod under utvecklingsprocessen}
+Under utvecklingen av väckarklockan uppstod några problem. Vissa var mjukvarurelaterade och några rörde hårdvaran.
+
+Ett omfattande problem var att skärmen fortsatte att visa frågan istället för den nuvarande tiden efter korrekt besvarad fråga. Det visade sig att detta berodde på att en while-loop inte stängdes ner ordentligt. Detta löstes genom att att lägga in \emph{break}-kommandot i slutet av loopen som tvingade den att stoppa. 
+
+I biblioteket \emph{pygame} som används för att spela upp alarmljudet fungerade inte kommandot för att stoppa alarmljudet. För att kringgå detta problem var biblioteket tvunget att återaktiveras vid varje alarmringning.
+
+Ett problem som inte rörde programmet var att högtalaren inte kunde ansluta till datorn via blåtand. Istället behövdes den kopplas upp via kabel. En annan lösning skulle vara att koppla in en högtalare till datorns GPIO (se 4.4).
+
+\subsection{Vidareutveckling av Proi Exypno}
+En mer komplett och attraktiv väckarklocka kan fås genom att paketera produkten i ett skal. För att detta ska kunna göras måste ett kretskort skapas med alla komponenter fastlödda. Dessutom måste högtalaren som nu är kopplad med 3,5 mm kabel bytas ut mot en högtalare som är kopplad direkt till datorns utgångsstift. 
+
+Väckarklockans mjukvara kan utvecklas så att andra typer av matematiska frågor läggs till, exempelvis på formen $a\cdot b - c\div d$.  Att fler frågor läggs in i frågebanken skulle också leda till en mer attraktiv produkt. För mer variation kan de booleska frågorna varieras med exempelvis flervalsfrågor, detta kräver dock fler knappar.
